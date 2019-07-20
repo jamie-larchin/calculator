@@ -1,0 +1,10 @@
+{
+    "defaultSeverity": "warning",
+    "extends": [],
+    "linterOptions": {
+        "exclude": [
+          "config/**/*.js",
+          "node_modules/**/*.ts"
+        ]
+    }
+}
