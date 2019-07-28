@@ -1,10 +1,12 @@
 {
     "defaultSeverity": "warning",
-    "extends": [],
+    "extends": ["tslint:recommended", "tslint-config-prettier"],
     "linterOptions": {
-        "exclude": [
-          "config/**/*.js",
-          "node_modules/**/*.ts"
-        ]
+        "exclude": ["config/**/*.js", "node_modules/**/*.ts"]
+    },
+    "rules": {
+        "max-line-length": [true, 80],
+        "no-eval": false,
+        "semicolon": [true, "always"]
     }
 }
