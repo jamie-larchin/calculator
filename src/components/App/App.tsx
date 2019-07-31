@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 const numberKeys = ['9', '8', '7', '6', '5', '4', '3', '2', '1', '0'];
@@ -6,6 +6,28 @@ const operatorKeys = ['+', '-', '*', '/'];
 
 const App: React.FC = () => {
     const [data, setData] = useState<string>('');
+
+    const handleKeydown = useCallback(
+        ({ key }) => {
+            const re = /([0-9*/+-]){1}/g;
+            if (re.test(key)) {
+                setData(data + key);
+            } else if (key === '=' || key === 'Enter') {
+                setData(eval(data).toString());
+            } else if (key === 'Backspace') {
+                setData('');
+            }
+        },
+        [data]
+    );
+
+    useEffect(() => {
+        window.addEventListener('keydown', handleKeydown);
+        return () => {
+            window.removeEventListener('keydown', handleKeydown);
+        };
+    }, [handleKeydown]);
+
     return (
         <Wrapper>
             <Calculator>
